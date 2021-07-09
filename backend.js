@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const { PythonShell } = require('python-shell')
-//post¹æ½ÄÀ¸·Î µ¥ÀÌÅÍ¸¦ ¹ÞÀ» ¶§ ÇÊ¿äÇÑ ¸ðµâÀÔ´Ï´Ù.
-//req¿¡ µ¥ÀÌÅÍ¸¦ ´ã¾ÆÁÝ´Ï´Ù.
+//postë°©ì‹ìœ¼ë¡œ ë°ì´í„°ë¥¼ ë°›ì„ ë•Œ í•„ìš”í•œ ëª¨ë“ˆìž…ë‹ˆë‹¤.
+//reqì— ë°ì´í„°ë¥¼ ë‹´ì•„ì¤ë‹ˆë‹¤.
 
 
 
@@ -10,10 +10,10 @@ app.get("/",function(req,res){
 let options = {
   mode: 'text',
   pythonOptions: ['-u'], // get print results in real-time
-  args: req.param('stations') // Python Script¿¡ ³Ñ°ÜÁÙ ÀÎÀÚ ¸ñ·Ï
+  args: req.param('stations') // Python Scriptì— ë„˜ê²¨ì¤„ ì¸ìž ëª©ë¡
 };
 app.get('',(req,res)=>{
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/SeoulSubwayMap-master/index.html')
 })
 console.log("stations :", req.param('stations'));
 PythonShell.run('./test.py', options, function(err, msg) {
@@ -22,7 +22,7 @@ PythonShell.run('./test.py', options, function(err, msg) {
     res.json(msg);
 });
 })
-// Python ScriptÀÇ ÇÁ·Î¼¼½º Á¾·áÇÏ±â
+// Python Scriptì˜ í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œí•˜ê¸°
 app.listen(3001, () => {
     console.log('listen to 3001')
 })
